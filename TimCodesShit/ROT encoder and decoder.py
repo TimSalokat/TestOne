@@ -65,6 +65,7 @@ def decrypt(rotNumber = "", message = ""):
         message = input("Message you want to encrypt: ")
     message = message.lower()
     ABC = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    keywords = ["der", "die", "das", "the", "ich", "du", "er", "sie", "es"]
 
     #check which number to use
     if rotNumber == "all":
@@ -98,7 +99,17 @@ def decrypt(rotNumber = "", message = ""):
                 newMessage.append(" ")
             letter += 1
         message = "".join(newMessage)
-        print(message)
+        temporary = False
+        wordlist = message.split()
+        for word in wordlist:
+            for keyword in keywords:
+                if word == keyword:
+                    color(message, "green")
+                    temporary = True
+                    break
+
+        if temporary != True:
+            print(message)
     else: 
         print("Please input again")
         decrypt()
