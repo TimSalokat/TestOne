@@ -90,15 +90,10 @@ def decrypt(rotNumber = "", message = ""):
                         letternumber = 0
 
                 #change letter to right thing
-                if letternumber - 1 - rotNumber in range(0, 26):
+                if letternumber - rotNumber in range(0, 26):
                     newMessage.append(ABC[letternumber - rotNumber])
                 elif letternumber - rotNumber < 0:
-                    newMessage.append(ABC[letternumber - rotNumber + 25])
-                elif letternumber - rotNumber == 0:
-                    letternumber = 25
-                    newMessage.append(ABC[letternumber])
-                else:
-                    newMessage.append(ABC[letternumber - rotNumber - 25]) 
+                    newMessage.append(ABC[letternumber - rotNumber + 26])
             else:
                 newMessage.append(" ")
             letter += 1
@@ -109,12 +104,17 @@ def decrypt(rotNumber = "", message = ""):
         decrypt()
 
 def code():
-    temporary = input("Do you want to encrypt or decrypt? e/d: ")
+    temporary = input("Do you want to encrypt or decrypt? e/d/exit: ")
     if temporary == "e":
         encrypt()
+        code()
     elif temporary == "d":
         decrypt()
-    code()
+        code()
+    elif temporary == "exit":
+        pass
+    else:
+        code()
 
 
 #---actual code---
