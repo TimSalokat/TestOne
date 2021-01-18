@@ -7,24 +7,15 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
-
-
-#Class holding the design stuff
-class MyGrid(Widget):
-    name = ObjectProperty(None)
-    email = ObjectProperty(None)
-
-    def btn(self):
-        print(f"Name:{self.name.text}, Email: {self.email.text}")
-        self.name.text = self.email.text = ""
+from kivy.uix.floatlayout import FloatLayout
 
 
 #First app definition
-class MyApp(App):
+class SecondApp(App):
     def build(self):
-        return MyGrid()
+        return FloatLayout()
 
 
 #run the code
 if __name__ == "__main__":
-    MyApp().run()
+    SecondApp().run()
