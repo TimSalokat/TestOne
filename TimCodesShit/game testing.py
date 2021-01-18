@@ -10,21 +10,18 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption('GAME')
 loop = True
 
-bg = pygame.image.load(spriteFolder + "lota.jpg")
-
 class Player:
     def __init__(self):
         self.x = 200
         self.y = 300
         self.xvel = 2
-        self.yvel = 20
+        self.yvel = 15
         self.jumping = False
-        self.jumpCount = 8
+        self.jumpCount = 10
         self.falling = True
 
-        self.spriteRight = pygame.image.load(spriteFolder + 'noahFacingRight.png')
-        self.spriteLeft = pygame.image.load(spriteFolder + "noahFacingLeft.png")
-        self.spriteJumping = pygame.image.load(spriteFolder + "noahJumping.png")
+        self.spriteRight = pygame.image.load(spriteFolder + 'personFacingRight.png')
+        self.spriteLeft = pygame.image.load(spriteFolder + "personFacingLeft.png")
         self.activeSprite = self.spriteRight
 
 class Floor:
@@ -42,6 +39,7 @@ while loop:
 
     distance = floor.y - floor.height/2 - player.y
     if distance >= 7 and player.jumping != True:
+        player.y += player.yvel
         player.falling = True
     else:
         player.falling = False
@@ -70,31 +68,18 @@ while loop:
             if keys[pygame.K_UP]:
                 player.jumping = True
         else:
-            collide = floor.floor.collidepoint(player.x, player.y) 
-            #print(nextCollide)
             if player.jumping == True:
                 if player.jumpCount >= 0:
                     player.y -= player.yvel
                     player.jumpCount -= 1
-                    player.activeSprite = player.spriteJumping
                 else:
-                    player.jumpCount = 8
+                    player.jumpCount = 10
                     player.jumping = False
-                # distance = floor.y - floor.height/2 - player.y
-                # player.jumpCount = distance
             else: 
-                player.jumpCount = 8
+                player.jumpCount = 10
                 player.jumping = False
 
-    distance = floor.y - floor.height/2 - player.y
-    if distance >= 7 and player.jumping != True:
-        player.y += player.yvel
-        player.falling = True
-    else:
-        player.falling = False
-
     screen.fill((0,0,0))
-    screen.blit(bg, (0,0))
     floor.floor = pygame.draw.rect(screen, (150, 0, 150), (floor.x, floor.y, 1000, floor.height))    
     screen.blit(player.activeSprite, (player.x, player.y))
     pygame.display.flip() 
