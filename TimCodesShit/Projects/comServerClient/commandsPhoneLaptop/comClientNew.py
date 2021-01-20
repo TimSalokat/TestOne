@@ -2,6 +2,8 @@ import os
 import socket
 from termcolor import colored
 
+#only works on linux
+
 #---Current Client version---
 version = 1.208
 #---defining stuff---

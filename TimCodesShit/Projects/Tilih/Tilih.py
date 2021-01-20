@@ -1,4 +1,5 @@
-#!/bin/python3 
+
+#actually i have no clue if this is working either on windows or linux
 
 #TODO 
 #

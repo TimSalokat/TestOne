@@ -1,7 +1,7 @@
-#!/bin/python3 
-
 import sys, os, socket, time
 from termcolor import colored
+
+#only works on linux
 
 #---dedicated Client version---
 dedicatedClientVersion = 1.208

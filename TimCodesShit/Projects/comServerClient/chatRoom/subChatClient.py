@@ -2,6 +2,8 @@ import time, os, socket, sys
 from termcolor import colored
 from threading import Thread
 
+#only works on linux
+
 #---defining funny stuff---
 
 #void function

@@ -1,5 +1,4 @@
-#!/bin/python3
-
+#only works on linux
 import os
 
 def com(command):
