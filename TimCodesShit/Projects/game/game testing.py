@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-spriteFolder = "TimCodesShit/sprites/"
+spriteFolder = "TimCodesShit/Projects/game/sprites/"
 
 pygame.init()
 clock = pygame.time.Clock()
