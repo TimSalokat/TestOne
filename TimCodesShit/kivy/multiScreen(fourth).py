@@ -11,6 +11,7 @@ class SecondWindow(Screen):
 class WindowManager(ScreenManager):
     pass
 
+#then it doesnt have to be the name of the app
 kv = Builder.load_file("fourth.kv")
 
 class fourthApp(App):
