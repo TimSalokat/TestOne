@@ -3,9 +3,11 @@ import os
 
 def com(command):
 	os.system(command)
+
+cwd = os.getcwd()
 	
 #change into the directory from ngrok	
-os.chdir ("/home/parrot/Documents/ngroks")
+os.chdir (cwd + "/TestOne/TimCodesShit/Projects/comServerClient/commandsPhoneLaptop")
 
 #change authtoken to baumkeks28
 com("./ngrok authtoken 1guUHSx9M6Op9fTSbRXdAVgc4FN_3qFbrCjQAauJVQ6DN4qbo")

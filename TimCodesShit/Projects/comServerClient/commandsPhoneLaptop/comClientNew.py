@@ -2,7 +2,7 @@ import os
 import socket
 from termcolor import colored
 
-#only works on linux
+#only works on android. Iguess?
 
 #---Current Client version---
 version = 1.208
