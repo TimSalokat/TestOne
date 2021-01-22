@@ -14,7 +14,7 @@ class Player:
     def __init__(self):
         self.x = 200
         self.y = 300
-        self.xvel = 2
+        self.xvel = 20
         self.yvel = 15
         self.jumping = False
         self.jumpCount = 10
