@@ -21,3 +21,6 @@ for i in range(0, len(schülerNames)):
     print(f"{schüler[i].name} has {schüler[i].nonoPeopleCount} nono people.")
     for x in range(0, schüler[i].nonoPeopleCount):
         print(f"{schüler[i].name}'s nono guy number {x + 1} is {schüler[i].nonoGuy[x]} ")
+
+
+    
