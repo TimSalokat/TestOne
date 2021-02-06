@@ -7,16 +7,16 @@ from termcolor import colored
 dedicatedClientVersion = 1.208
 #---defining stuff/variables---
 #TODO Server
-#Editing Files
+#Editing Files aka sending and receiving files client just as a function
 #reset comline on client disconnect
 #
-#Autoconnect to ngrok?
-#Receiving Files
-#connect to tilih
-#failsave?
-#windows pc
-#server shell
-#new lineS for ls etc. 
+#Autoconnect to ngrok?  
+#Receiving Files which are sent by the client
+#connect to tilih so tilih can call the comServer and send commands over voice input
+#failsave?  (no fuckin clue what i wanted to mention there)
+#rewrite to use it on windows
+#server shell (i dont fuckin know)
+#new lineS for ls etc. so it shouldnt be just in one line
 #
 #
 #TODO Client
