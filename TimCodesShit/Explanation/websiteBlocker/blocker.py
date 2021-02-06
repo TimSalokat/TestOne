@@ -1,6 +1,9 @@
+#only workin on linux at the moment
+
 #Import libraries
 import time
 from datetime import datetime as dt
+
 #Windows host file path
 hostsPath = "/etc/hosts"
 redirect="127.0.0.1"
@@ -29,4 +32,4 @@ while True:
                 if not any(site in line for site in websites):
                     file.write(line)
                 file.truncate()
-    time.sleep(1)
+    time.sleep(.5)

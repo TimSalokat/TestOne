@@ -13,9 +13,11 @@ print(f"[*] Listening on {bind_ip}:{bind_port}")
 def handle_client(client_socket):
     request = client_socket.recv(1024).decode()
 
-    print(f"[*] Received: {request}")
+    response = f"Received: {request}"
 
-    client_socket.send("ACK!".encode())
+    print(f"[*] {response}")
+
+    client_socket.send(response.encode())
     client_socket.close()
 
 while True:
