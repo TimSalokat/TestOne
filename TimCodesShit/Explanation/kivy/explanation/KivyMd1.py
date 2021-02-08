@@ -1,4 +1,4 @@
-from KivyMd1Helpers import username_helper
+from KivyMd1Helpers import username_helper, screen_helper
 from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel, MDIcon
 from kivymd.uix.screen import Screen
@@ -7,6 +7,8 @@ from kivy.lang import Builder
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.list import OneLineListItem, MDList, TwoLineListItem, ThreeLineListItem, ThreeLineIconListItem, IconLeftWidget, ThreeLineAvatarIconListItem, ImageLeftWidget #the 2 before are for custom images
 from kivy.uix.scrollview import ScrollView
+from kivy.core.window import Window
+from kivy.uix.screenmanager import Screen, ScreenManager
 
 global center
 center = {"center_x":0.5, "center_y":0.5}
@@ -131,22 +133,126 @@ center = {"center_x":0.5, "center_y":0.5}
 #             self.root.ids.container.add_widget(items)
 
 
-screen_helper = """
-Screen:
-    BoxLayout:
-        orientation: "vertical"
-        MDToolbar:
-            title: "Demo"
-        MDLabel:
-            text: "Hello world!"
-            halign: "center"
-"""
+
+#---First demo bars---
+# Window.size = (300,500)
+
+# screen_helper = """
+# Screen:
+#     BoxLayout:
+#         orientation: "vertical"
+#         MDToolbar:
+#             title: "Demo"
+#             left_action_items: [["menu", lambda x: app.navigation_draw()]]
+#             right_action_items: [["clock", lambda x: app.navigation_draw()]]
+#             elevation: 11
+#         MDLabel:
+#             text: "Hello world!"
+#             halign: "center"
+    
+#     MDBottomAppBar:
+#         MDToolbar:
+#             mode: "end"
+#             type: "bottom"
+#             on_action_button: app.navigation_draw()
+#             icon: "coffee"
+# """
+# class TestApp(MDApp):
+
+#     def build(self):
+#         self.theme_cls.primary_palette = "Purple"
+#         self.theme_cls.primary_hue = "700"
+
+#         screen = Builder.load_string(screen_helper)
+
+#         return screen
+
+#     def navigation_draw(self):
+#         print("navigation")
+#---end demo bars---
+
+#---Basic navigation Bar---
+# navigation_helper="""
+# Screen:
+#     NavigationLayout:
+#         ScreenManager:
+#             Screen:
+
+
+#                 BoxLayout:
+#                     orientation: "vertical"
+
+#                     MDToolbar: 
+#                         title: "Demonstration"
+#                         left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
+#                         elevation: 11
+
+#                     Widget:
+
+#         MDNavigationDrawer:
+#             id: nav_drawer
+
+#             BoxLayout:
+#                 spacing: "8dp"
+#                 padding: "8dp"
+#                 orientation: "vertical"
+
+#                 Image:
+#                     source: "nyan.png"
+
+#                 MDLabel:
+#                     text: "Name"
+#                     font_style: "Subtitle1"
+#                     size_hint_y: None
+#                     height: self.texture_size[1]
+#                 MDLabel:
+#                     text: "Mail"
+#                     font_style: "Caption"
+#                     size_hint_y: None
+#                     height: self.texture_size[1]
+
+#                 ScrollView:
+#                     MDList:
+#                         OneLineIconListItem:
+#                             text: "Item1"
+#                             IconLeftWidget:
+#                                 icon: "face-profile-woman"
+
+#                         OneLineIconListItem
+#                             text: "Item2"
+#                             IconLeftWidget:
+#                                 icon: "file-upload"
+                        
+#                         OneLineIconListItem:
+#                             text: "Item3"
+#                             IconLeftWidget:
+#                                 icon: "logout"
+
+# """
+
+Window.size = (300,500)
+
+class MenuScreen(Screen):
+    pass
+
+class ProfileScreen(Screen):
+    pass
+
+class UploadScreen(Screen):
+    pass
+
+sm = ScreenManager()
+sm.add_widget(MenuScreen(name="menu"))
+sm.add_widget(ProfileScreen(name="profile"))
+sm.add_widget(UploadScreen(name="upload"))
 
 class TestApp(MDApp):
 
     def build(self):
-        screen = Builder.load_string(screen_helper)
+        self.theme_cls.primary_palette = "Purple"
+        self.theme_cls.primary_hue = "700"
 
+        screen = Builder.load_string(screen_helper)
         return screen
 
 
