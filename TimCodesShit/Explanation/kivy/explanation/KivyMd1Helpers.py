@@ -50,3 +50,55 @@ ScreenManager:
         on_press: root.manager.current = "menu"
     
 """
+
+navigation_helper="""
+Screen:
+    NavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: "vertical"
+
+                    MDToolbar: 
+                        title: "Demonstration"
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state()]]
+                        elevation: 11
+
+                    Widget:
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            BoxLayout:
+                spacing: "8dp"
+                padding: "8dp"
+                orientation: "vertical"
+
+                MDLabel:
+                    text: "Name"
+                    font_style: "Subtitle1"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                MDLabel:
+                    text: "Mail"
+                    font_style: "Caption"
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Item1"
+                            IconLeftWidget:
+                                icon: "face-profile-woman"
+
+                        OneLineIconListItem
+                            text: "Item2"
+                            IconLeftWidget:
+                                icon: "file-upload"
+                        
+                        OneLineIconListItem:
+                            text: "Item3"
+                            IconLeftWidget:
+                                icon: "logout"
+
+"""
