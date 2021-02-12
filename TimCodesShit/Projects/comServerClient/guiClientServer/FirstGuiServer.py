@@ -1,10 +1,19 @@
+import sys
+
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
+from kivymd.uix.button import MDFloatingActionButton
+from kivymd.uix.label import MDLabel
+from server import server
 
-Window.size = (300,500)
+
+global width, height
+width = 300
+height = 500
+Window.size = (width,height)
 
 
 KV = """
@@ -17,7 +26,6 @@ KV = """
         Rectangle:
             pos: self.pos
             size: self.size
-
 
 <ContentNavigationDrawer>:
     orientation: "vertical"
@@ -81,10 +89,15 @@ KV = """
                         root.screen_manager.current = "Tilih"
 
     MDList:
+
         OneLineIconListItem:
             text: "Logout"
-        
+            on_release: app.quit()
 
+            IconLeftWidget:
+                icon: "logout"
+                on_release: app.quit()
+        
 Screen:
 
     ScreenManager:
@@ -108,7 +121,7 @@ Screen:
 
             MDBoxLayout:
                 orientation: "vertical"
-
+                
                 MDToolbar:
                     title: "Chat"
                     elevation: 10
@@ -116,28 +129,32 @@ Screen:
 
                 Box:
                     bg: 177/255,230/255,229/255,.7
+
                     ScrollView:
-                            
-                        MDLabel:
-                            id: ChatBox
-                            text: "Text"
+                        
+                        MDList:
+                            id: theList
+
+                            MDLabel:
+                                id: chatBox2
+                                text: ""
                 Box:
                     bg: 177/255,230/255,229/255,.7
                     adaptive_height: True
 
                     MDTextField:
-                        multiline: True
+                        id: chatInput
+                        multiline: False
                         mode: "rectangle"
                         mode: "fill"
                         fill_color: 177/255,230/255,229/255,.5
                         hint_text: "Input"
-                            
+                        
                     MDFloatingActionButton:
-                        md_bg_color: app.theme_cls.primary_color
+                        on_release: app.chatInput()
+                        md_bg_color: self.theme_cls.primary_color
                         icon: "send"
-
                        
-        
         Screen:
             name: "Todo"
 
@@ -233,13 +250,24 @@ class ContentNavigationDrawer(BoxLayout):
 
 class MainApp(MDApp):
     def build(self):
+        self.width = width
+        self.height = height
+
         self.theme_cls.primary_palette = "Purple"
         self.theme_cls.primary_hue = "800" 
         self.theme_cls.theme_style = "Dark"
 
         return Builder.load_string(KV)
 
-def babafunktion(self,obj):
-    print("hello")
+    def chatInput(self):
+
+        if self.root.ids.chatInput.text != "":
+            print(f"{self.root.ids.chatInput.text}\n")
+            
+            self.root.ids.chatBox2.text += str(f"[*]{self.root.ids.chatInput.text}\n")
+            self.root.ids.chatInput.text = ""
+
+    def quit(self):
+        sys.exit()
 
 MainApp().run()
