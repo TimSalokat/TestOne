@@ -10,18 +10,25 @@ server.listen(5)
 
 print(f"[*] Listening on {bind_ip}:{bind_port}")
 
-def handle_client(client_socket):
-    request = client_socket.recv(1024).decode()
+def handle_client(client_socket, address):
+    
+    while True:
+        request = client_socket.recv(1024).decode()
+        response = f"Received: {request}"
 
-    print(f"[*] Received: {request}")
-
-    client_socket.send("ACK!".encode())
-    client_socket.close()
+        if request == "exit client":
+            client_socket.close()
+            print(f"[*] {address}] Client closed")
+            break
+        else:
+            print(f"[*] {address}] {response}")
+            client_socket.send(response.encode())
 
 while True:
     client, addr = server.accept()
+    full_addr = f"{addr[0]}:{addr[1]}"
 
-    print(f"[*] Accepted connection from {addr[0]}:{addr[1]}")
+    print(f"[*] {full_addr}] Accepted connection")
 
-    client_handler = threading.Thread(target=handle_client,args=(client,))
+    client_handler = threading.Thread(target=handle_client,args=(client,full_addr,))
     client_handler.start()
