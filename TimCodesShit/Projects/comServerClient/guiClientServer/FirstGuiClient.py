@@ -1,18 +1,20 @@
-import sys
+import os
+import certifi
 
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
-from kivymd.uix.button import MDFloatingActionButton
-from kivymd.uix.label import MDLabel
+
+os.environ["SSL_CERT_FILE"] = certifi.where()
+
+#import socket
 
 
-global width, height
-width = 300
-height = 500
-Window.size = (width,height)
+#global width, height
+#width = 300
+#height = 500
+#Window.size = (width,height)
 
 
 KV = """
@@ -247,10 +249,10 @@ class ContentNavigationDrawer(BoxLayout):
     screen_manager = ObjectProperty()
     nav_drawer = ObjectProperty()
 
-class MainApp(MDApp):
+class myApp(MDApp):
     def build(self):
-        self.width = width
-        self.height = height
+        #self.width = width
+        #self.height = height
 
         self.theme_cls.primary_palette = "Purple"
         self.theme_cls.primary_hue = "800" 
@@ -261,12 +263,13 @@ class MainApp(MDApp):
     def chatInput(self):
 
         if self.root.ids.chatInput.text != "":
-            print(f"{self.root.ids.chatInput.text}\n")
+            #print(f"{self.root.ids.chatInput.text}\n")
             
             self.root.ids.chatBox2.text += str(f"[*]{self.root.ids.chatInput.text}\n")
             self.root.ids.chatInput.text = ""
 
     def quit(self):
-        sys.exit()
+        #sys.exit()
+        pass
 
-MainApp().run()
+myApp().run()
