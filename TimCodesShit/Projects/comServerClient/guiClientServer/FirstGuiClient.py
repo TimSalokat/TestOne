@@ -1,13 +1,7 @@
-import os
-import certifi
-
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
-
-os.environ["SSL_CERT_FILE"] = certifi.where()
-
 #import socket
 
 
