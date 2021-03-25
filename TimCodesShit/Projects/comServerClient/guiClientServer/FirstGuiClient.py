@@ -1,18 +1,14 @@
-import sys
-
 from kivy.lang import Builder
 from kivymd.app import MDApp
-from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
-from kivymd.uix.button import MDFloatingActionButton
-from kivymd.uix.label import MDLabel
+#import socket
 
 
-global width, height
-width = 300
-height = 500
-Window.size = (width,height)
+#global width, height
+#width = 300
+#height = 500
+#Window.size = (width,height)
 
 
 KV = """
@@ -35,67 +31,39 @@ KV = """
 
         MDList:
 
-            OneLineIconListItem:
+            OneLineListItem:
                 text: "Chat"
                 on_press:
                     root.nav_drawer.set_state("close")
                     root.screen_manager.transition.direction = "down"
                     root.screen_manager.current = "Chat"
-                IconLeftWidget:
-                    icon: "chat"
-                    on_press:
-                        root.nav_drawer.set_state("close")
-                        root.screen_manager.transition.direction = "down"
-                        root.screen_manager.current = "Chat"
 
-            OneLineIconListItem:
+            OneLineListItem:
                 text: "To-Do"
                 on_press:
                     root.nav_drawer.set_state("close")
                     root.screen_manager.transition.direction = "down"
                     root.screen_manager.current = "Todo"
-                IconLeftWidget:
-                    icon: "checkbox-marked-circle-outline"
-                    on_press:
-                        root.nav_drawer.set_state("close")
-                        root.screen_manager.transition.direction = "down"
-                        root.screen_manager.current = "Todo"
 
-            OneLineIconListItem:
+            OneLineListItem:
                 text: "Devices"
                 on_press:
                     root.nav_drawer.set_state("close")
                     root.screen_manager.transition.direction = "down"
                     root.screen_manager.current = "Devices"
-                IconLeftWidget:
-                    icon: "devices"
-                    on_press:
-                        root.nav_drawer.set_state("close")
-                        root.screen_manager.transition.direction = "down"
-                        root.screen_manager.current = "Devices"
             
-            OneLineIconListItem:
+            OneLineListItem:
                 text: "Tilih"
                 on_press:
                     root.nav_drawer.set_state("close")
                     root.screen_manager.transition.direction = "down"
                     root.screen_manager.current = "Tilih"
-                IconLeftWidget:
-                    icon: "console-line"
-                    on_press:
-                        root.nav_drawer.set_state("close")
-                        root.screen_manager.transition.direction = "down"
-                        root.screen_manager.current = "Tilih"
 
     MDList:
 
-        OneLineIconListItem:
+        OneLineListItem:
             text: "Logout"
             on_release: app.quit()
-
-            IconLeftWidget:
-                icon: "logout"
-                on_release: app.quit()
         
 Screen:
 
@@ -135,7 +103,7 @@ Screen:
                             id: theList
 
                             MDLabel:
-                                id: chatBox2
+                                id: chatBox
                                 text: ""
                 Box:
                     bg: 177/255,230/255,229/255,.7
@@ -152,7 +120,6 @@ Screen:
                     MDFloatingActionButton:
                         on_release: app.chatInput()
                         md_bg_color: self.theme_cls.primary_color
-                        icon: "send"
                        
         Screen:
             name: "Todo"
@@ -247,10 +214,10 @@ class ContentNavigationDrawer(BoxLayout):
     screen_manager = ObjectProperty()
     nav_drawer = ObjectProperty()
 
-class MainApp(MDApp):
+class myApp(MDApp):
     def build(self):
-        self.width = width
-        self.height = height
+        #self.width = width
+        #self.height = height
 
         self.theme_cls.primary_palette = "Purple"
         self.theme_cls.primary_hue = "800" 
@@ -261,12 +228,13 @@ class MainApp(MDApp):
     def chatInput(self):
 
         if self.root.ids.chatInput.text != "":
-            print(f"{self.root.ids.chatInput.text}\n")
+            #print(f"{self.root.ids.chatInput.text}\n")
             
-            self.root.ids.chatBox2.text += str(f"[*]{self.root.ids.chatInput.text}\n")
+            self.root.ids.chatBox.text += str(f"[*]{self.root.ids.chatInput.text}\n")
             self.root.ids.chatInput.text = ""
 
     def quit(self):
-        sys.exit()
+        #sys.exit()
+        pass
 
-MainApp().run()
+myApp().run()

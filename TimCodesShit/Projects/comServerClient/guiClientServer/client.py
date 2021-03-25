@@ -45,7 +45,6 @@ def client():
     print('Client is connected to a chat sever!\n')
 
 
-
     # call the function to send message to server
     #send_to_server(clientSocket)
     t_send = threading.Thread(target=send, args=(clientSocket,))
