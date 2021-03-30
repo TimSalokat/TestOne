@@ -53,10 +53,10 @@ def server():
     global FLAG
 
     # TODO (1) - define HOST name, this would be an IP address or 'localhost' (1 line)
-    HOST = 'localhost'
+    HOST = '127.0.1.1'
     # TODO (2) - define PORT number (1 line) (Google, what should be a valid port number)
     # make sure the ports are not used for any other application
-    serverPort = 6789
+    serverPort = 1234
 
     # Create a TCP server socket
     #(AF_INET is used for IPv4 protocols)
