@@ -1,4 +1,6 @@
 from termcolor import colored
+#if your computer doesnt have this module installed run pip/pip3 install termcolor
+
 
 global datenbank
 datenbank = [
