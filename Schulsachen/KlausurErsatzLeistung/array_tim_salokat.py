@@ -1,4 +1,6 @@
 from termcolor import colored
+#if your computer doesnt have this module installed run pip/pip3 install termcolor
+
 
 datenbank = [
    ["PID", "Vorname", "Nachname", "Adresse", "PLZ", "Wohnort"],
@@ -14,14 +16,14 @@ def color(message):
     print("Running " + colored(message, "green"))
 #----------------------------------------------
 
-def One():
+def taskOne():
     print(datenbank[2][2])
 
-def Two():
+def taskTwo():
     for i in range(1, len(datenbank[1])):
         print(datenbank[0][i] + ": " + datenbank[1][i])
 
-def Three():
+def taskThree():
     for i in range(1, len(datenbank)):
 
         if str(datenbank[i][2])[0] == "M":                                  #Check if the last name from the person starts with a capital M
@@ -31,7 +33,7 @@ def Three():
                 
                 print(datenbank[0][n] + ": " + datenbank[i][n])             #Print all of the persons data
 
-def Four():
+def taskFour():
 
     Auswahl = input("Mit welchem Buchstaben beginnt der Nachname: ")
     Auswahl = Auswahl.capitalize()                                          #Capitalize the letter because the last name in the array always starts with a capital
@@ -50,7 +52,7 @@ def Four():
     if Ausgegeben == 0:
         print("Es tut mir leid doch im Verzeichnis ist niemand dessen Nachname mit " + Auswahl + " beginnt.")         
 
-def Five():
+def taskFive():
     Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
     for letter in range(0, len(Alphabet)):
@@ -65,15 +67,30 @@ def Five():
 
                     print(datenbank[0][n] + ": " + datenbank[i][n])         #Print all of the persons data
 
+def taskSix():
+    
+    #DISCLAIMER: Everything inputed here will be saved to the global "datenbank" variable. So the information will be included in Task1-5 too.
+
+    newRecord = []                                                          #Create a new record (Datensatz)
+    newRecord.append(str(len(datenbank)))                                   #Set the number of the record
+    newRecord.append(input("First name: "))
+    newRecord.append(input("Last name: "))
+    newRecord.append(input("Street and house number: "))                    #Input all the Information and add it to the new record
+    newRecord.append(input("Postcode: "))
+    newRecord.append(input("In which city do you live: "))
+    
+    datenbank.append(newRecord)                                             #Add the new Record to the "datenbank"
+    print(datenbank)
+
 #making you pick the code you want to run
-def AufgabeWählen():
+def WählenDerAufgabe():
     
     while True:
-        Auswahl = input("Welche Aufgabe würden sie sich gerne ansehen? (1-9): ")
+        pickTask = input("Welche Aufgabe würden sie sich gerne ansehen? 'e' to exit (1-6): ")
         
         #Try converting the Input to an integer. 
         try:
-            Auswahl = int(Auswahl)
+            pickTask = int(pickTask)
         except:
             print("Bitte geben sie eine valide Zahl ein")
             #continue
@@ -81,34 +98,37 @@ def AufgabeWählen():
         
         #pick the answer and run the coresponding program
         try:
-            if Auswahl == 1:
+            if pickTask == 1:
                 color("Aufgabe 1")
-                One()
-                print("\n")
+                taskOne()
 
-            elif Auswahl == 2:
+            elif pickTask == 2:
                 color("Aufgabe 2")
-                Two()
-                print("\n")
+                taskTwo()
 
-            elif Auswahl == 3:
+            elif pickTask == 3:
                 color("Aufgabe 3")
-                Three()
-                print("\n")
+                taskThree()
 
-            elif Auswahl == 4:
+            elif pickTask == 4:
                 color("Aufgabe 4")
-                Four()
-                print("\n")
+                taskFour()
 
-            elif Auswahl == 5:
+            elif pickTask == 5:
                 color("Aufgabe 5")
-                Five()
-                print("\n")
+                taskFive()
+            
+            elif pickTask == 6:
+                color("Aufgabe 6")
+                taskSix()
 
             else:
                 print("Bitte geben sie eine valide Zahl ein")
-        except:
-            print(colored("Sorry something went wrong. Exiting", "red"))      
+            
+            #Seperate new inputs a bit
+            print("\n")
 
-AufgabeWählen()
+        except:
+            print(colored("Hier ist irgendwas schief gegangen. Bitte versuchen sie es erneut.", "red"))      
+
+WählenDerAufgabe()
