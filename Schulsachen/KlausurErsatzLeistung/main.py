@@ -1,6 +1,5 @@
 from termcolor import colored
 
-global datenbank
 datenbank = [
    ["PID", "Vorname", "Nachname", "Adresse", "PLZ", "Wohnort"],
    ["1", "Ali", "Uygun", "Wallstraße 25", "32839", "Steinheim"],
